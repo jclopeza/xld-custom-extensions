@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+    Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <!-- Add your <rule ...> and <disable-rule ...> elements here -->
+
+    <rule name="axis2.deploy.aar" scope="deployed">
+        <conditions>
+            <type>axis2.DeployedAar</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <upload>
+                <description expression="true">"Copia del fichero %s al directorio %s" % (deployed.deployable.targetFileName, deployed.container.axis2ServicesDirectory)</description>
+                <artifact expression="true">deployed</artifact>
+                <target-path expression="true">"%s/%s" % (deployed.container.axis2ServicesDirectory, deployed.deployable.targetFileName)</target-path>
+                <order>60</order>
+            </upload>
+        </steps>
+    </rule>
+
+</rules>
