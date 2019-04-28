@@ -1,0 +1,2 @@
+cd ${deployed.userDirectory}
+dir

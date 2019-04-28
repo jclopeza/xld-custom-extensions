@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <!-- Add your <rule ...> and <disable-rule ...> elements here -->
+    
+    <rule name="demo-os-script.Deployed.rules_CREATE" scope="deployed">
+        <conditions>
+            <type>demo-os-script.Deployed</type>
+            <operation>CREATE</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Executing os-script on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/os-cript-create.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+    <rule name="demo-os-script.Deployed.rules_MODIFY" scope="deployed">
+        <conditions>
+            <type>demo-os-script.Deployed</type>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Executing os-script on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/os-cript-modify.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+    
+</rules>

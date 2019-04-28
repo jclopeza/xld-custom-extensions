@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <!-- Add your <rule ...> and <disable-rule ...> elements here -->
+    
+    <rule name="demoscript.rules_CREATEMODIFY" scope="deployed">
+        <conditions>
+            <type>demoscript.Deployed</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+            <expression>deployed.runCommandOrNot == True</expression>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Executing script demoscript: " + str(deployed.runCommandOrNot)</description>
+                <order>70</order>
+                <script>scripts/demoscript</script>
+            </os-script>
+        </steps>
+    </rule>
+    <rule name="demoscript.rules_DESTROY" scope="deployed">
+        <conditions>
+            <type>demoscript.Deployed</type>
+            <operation>DESTROY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description>Rolling back script demoscript</description>
+                <order>70</order>
+                <script>scripts/demoscript-rollback</script>
+            </os-script>
+        </steps>
+    </rule>
+    
+</rules>

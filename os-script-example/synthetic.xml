@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Note: If you modify this file, you must restart the XL Deploy server.
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- Extendemos de udm.BaseDeployableArtifact porque queremos adjuntar un archivo -->
+    <type type="demo-os-script.Deployable" extends="udm.BaseDeployableArtifact">
+        <property name="propertyDeployable"/>
+        <!-- Para la siguient propiedad hace falta definir enum-class -->
+        <!-- <property name="propertyDeployable_enum" kind="enum" required="false" category="Kind of variables"/> -->
+        <property name="propertyDeployable_boolean" kind="boolean" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_integer" kind="integer" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_string" kind="string" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_set_of_string" kind="set_of_string" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_list_of_string" kind="list_of_string" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_map_string_string" kind="map_string_string" required="false" category="Kinds of variables"/>
+        <!-- Para las siguientes propiedades es obligatorio definir el atributo referenced-type -->
+        <property name="propertyDeployable_ci" kind="ci" referenced-type="udm.Application" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_set_of_ci" kind="set_of_ci" referenced-type="udm.Application" required="false" category="Kinds of variables"/>
+        <property name="propertyDeployable_list_of_ci" kind="list_of_ci" referenced-type="udm.Application" required="false" category="Kinds of variables"/>
+    </type>
+    <!-- La primera linea indica que extendemos de un contenedor tipo host -->
+    <type type="demo-os-script.Container" extends="udm.BaseContainer">
+        <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true"/>
+        <property name="propertyContainer"/>
+    </type>
+    <!-- El tipo udm.BaseDeployedArtifact hace que tengamos acceso, entre otras cosas a la propiedad deployed.file.path -->
+    <type type="demo-os-script.Deployed" extends="udm.BaseDeployedArtifact" deployable-type="demo-os-script.Deployable" container-type="demo-os-script.Container">
+        <property name="propertyDeployed" default="completed"/>
+    </type>
+</synthetic>
