@@ -28,4 +28,21 @@ Note: If you modify this file, you must restart the XL Deploy server.
     <type type="demo-os-script.Deployed" extends="udm.BaseDeployedArtifact" deployable-type="demo-os-script.Deployable" container-type="demo-os-script.Container">
         <property name="propertyDeployed" default="completed"/>
     </type>
+    
+    <!-- Ejemplo de copy-default-values -->
+    <type type="demo-os-script.DeployedCopy" extends="udm.BaseDeployed" deployable-type="demo-os-script.DeployableCopy" container-type="demo-os-script.Container">
+        <generate-deployable type="demo-os-script.DeployableCopy" extends="udm.BaseDeployable" copy-default-values="true"/>
+        <property name="driverClassName" description="The fully qualified Java class name of the JDBC driver to be used." default="default1"/>
+        <property name="url" description="The connection URL to be passed to our JDBC driver to establish a connection." default="default2"/>
+    </type>
+
+    <!-- Nuevo container para probar la opción target-host -->
+    <type type="demo-os-script.NestedContainer" extends="udm.BaseContainer">
+        <property name="cluster" kind="ci" referenced-type="demo-os-script.Container" as-containment="true"/>
+    </type>
+    <type type="demo-os-script.NestedDeployed" extends="udm.BaseDeployed" deployable-type="demo-os-script.NestedDeployable" container-type="demo-os-script.NestedContainer">
+        <generate-deployable type="demo-os-script.NestedDeployable" extends="udm.BaseDeployable" copy-default-values="true" />
+        <property name="propertyNestedDeployed" default="completed"/>
+    </type>
+
 </synthetic>

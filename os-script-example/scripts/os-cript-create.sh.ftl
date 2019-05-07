@@ -38,7 +38,7 @@ echo "La variable string vale otra cosa: ${deployed.deployable.propertyDeployabl
 # Caso 4. Evaluamos un conjunto de Strings, set_of_string
 ###############################################################
 <#list deployed.deployable.propertyDeployable_set_of_string as my_string>
-    echo "Elemento de mi set_of_string = ${my_string}"
+echo "Elemento de mi set_of_string = ${my_string}"
 </#list>
 
 ###############################################################
@@ -47,7 +47,7 @@ echo "La variable string vale otra cosa: ${deployed.deployable.propertyDeployabl
 # se obtienen las mismas. Se pueden reordenar en la gui
 ###############################################################
 <#list deployed.deployable.propertyDeployable_list_of_string as my_string>
-    echo "Elemento de mi list_of_string = ${my_string}"
+echo "Elemento de mi list_of_string = ${my_string}"
 </#list>
 
 ###############################################################
@@ -85,7 +85,46 @@ echo "Accediendo a CI, latestVersion = ${deployed.deployable.propertyDeployable_
 
 ###############################################################
 # Caso 11. Accediendo a todos los elementos de un tipo CI
+# Es una forma de obtener todos los atributos disponibles para
+# un CI concreto
 ###############################################################
 <#list deployed.deployable.propertyDeployable_ci as key, value>
 echo "Key = ${key}"
+</#list>
+
+###############################################################
+# Caso 12. Accediendo propertyDeployable_set_of_ci
+###############################################################
+<#list deployed.deployable.propertyDeployable_set_of_ci as my_ci>
+echo "Nombre del CI = ${my_ci.name}"
+</#list>
+
+###############################################################
+# Caso 13. Accediendo propertyDeployable_list_of_ci
+###############################################################
+<#list deployed.deployable.propertyDeployable_list_of_ci as my_ci>
+echo "Nombre del CI = ${my_ci.name}"
+</#list>
+
+###############################################################
+# Caso 14. Accediendo a todos los CI de deployedApplication
+# Para tener acceso al deployedApplication, es necesario
+# incluirlo en el freemarker context del os-script
+###############################################################
+<#list deployedApplication?keys as key>
+echo "Key deployedApplication= ${key}"
+</#list>
+
+###############################################################
+# Caso 15. Definición y modificación de un diccionario
+###############################################################
+<#assign myDict = {}>
+# Redefinir un diccionario
+<#assign myDict = myDict + {"new_key": "new_value"}>
+
+###############################################################
+# Caso 15. Acceso a los diccionarios de un entorno
+###############################################################
+<#list deployedApplication.environment.dictionaries as dict>
+echo "Diccionario =  ${dict.name}"
 </#list>

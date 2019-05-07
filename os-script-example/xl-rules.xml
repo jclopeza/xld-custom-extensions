@@ -15,6 +15,9 @@ Note: If you modify this file and automatic reloading is disabled in `planner.co
                 <description expression="true">"Executing os-script on: " + deployed.deployable.name</description>
                 <order>50</order>
                 <script>scripts/os-cript-create.sh.ftl</script>
+                <freemarker-context>
+                    <deployedApplication expression="true">deployedApplication</deployedApplication>
+                </freemarker-context>
             </os-script>
         </steps>
     </rule>
@@ -28,6 +31,21 @@ Note: If you modify this file and automatic reloading is disabled in `planner.co
                 <description expression="true">"Executing os-script on: " + deployed.deployable.name</description>
                 <order>50</order>
                 <script>scripts/os-cript-modify.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+
+    <rule name="demo-os-script.NestedDeployed.rules_CREATE" scope="deployed">
+        <conditions>
+            <type>demo-os-script.NestedDeployed</type>
+            <operation>CREATE</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Executing os-script on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <target-host expression="true">deployed.container.cluster.host</target-host>
+                <script>scripts/os-cript-nested.sh.ftl</script>
             </os-script>
         </steps>
     </rule>
