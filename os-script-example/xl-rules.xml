@@ -49,5 +49,33 @@ Note: If you modify this file and automatic reloading is disabled in `planner.co
             </os-script>
         </steps>
     </rule>
-    
+
+    <rule name="carrefour.bigdata.ExecutedScript.rules_CREATE_MODIFY_NOOP" scope="deployed">
+        <conditions>
+            <type>carrefour.BigData</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+            <operation>NOOP</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Executing bigdata script on application " + deployedApplication.version.application.name + " and version " + deployedApplication.version.name</description>
+                <order>50</order>
+                <script>carrefour/bigdata</script>
+                <freemarker-context>
+                    <deployedApplication expression="true">deployedApplication</deployedApplication>
+                </freemarker-context>
+            </os-script>
+        </steps>
+    </rule>
+
+    <!-- Rules and templates -->
+    <rule name="lyhsoft.DeployedTemplate_CREATE" scope="deployed">
+        <conditions>
+            <type>lyhsoft.DeployedTemplate</type>
+            <operation>CREATE</operation>
+        </conditions>
+        <planning-script-path>scripts/planningScripts/createTemplate.py</planning-script-path>
+    </rule>
+
 </rules>

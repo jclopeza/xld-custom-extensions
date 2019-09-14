@@ -44,5 +44,47 @@ Note: If you modify this file, you must restart the XL Deploy server.
         <generate-deployable type="demo-os-script.NestedDeployable" extends="udm.BaseDeployable" copy-default-values="true" />
         <property name="propertyNestedDeployed" default="completed"/>
     </type>
+    
+    <type type="carrefour.BigData" extends="udm.BaseDeployed" deployable-type="carrefour.BigDataSpec" container-type="overthere.Host">
+        <generate-deployable  type="carrefour.BigDataSpec" extends="udm.BaseDeployable"/>
+        <property name="shellScriptLocation" required="true" default="/opt/carrefour/bigdataScript.sh" hidden="true"/>
+    </type>
+
+
+
+    <!-- Ejemplo de uso de template -->
+    <type type="lyhsoft.DeployedTemplate" extends="udm.BaseDeployedArtifact" deployable-type="lyhsoft.Template" container-type="overthere.Host">
+        <generate-deployable  type="lyhsoft.Template" extends="udm.BaseDeployableArtifact"/>
+        <property name="propInTemplate" required="true" default="prop in template"/>
+    </type>
+
+    <!--
+    <type type="orange.SpaContainer" extends="udm.BaseContainer">
+        <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true"/>
+    </type>
+
+    <type type="spa.Deployed" extends="udm.BaseDeployedArtifact" deployable-type="orange.Spa" container-type="orange.SpaContainer">
+        <generate-deployable type="orange.Spa" extends="udm.BaseDeployableArtifact"/>
+        <property name="targetPath"/>
+    </type>
+    -->
+    <type type="orange.Helm" extends="udm.BaseDeployableArtifact">
+    </type>
+    <type type="orange.Spa" extends="udm.BaseDeployable">
+        <property name="tecnologia"/>
+        <property name="testUrl"/>
+    </type>
+    <type type="orange.SpaContainer" extends="udm.BaseContainer">
+        <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true"/>
+        <property name="hostToDeploy"/>
+        <property name="folderToDeploy"/>
+        <property name="environment"/>
+        <property name="groups" kind="list_of_string" required="false"/>
+        <property name="gitlab_token" password="true" required="true"/>
+	    <property name="gitlab_user" required="true" default="jenkins-bot"/> 
+	    <property name="gitlab_url" required="true" /> 
+    </type>
+    <type type="orange.SpaDeployed" extends="udm.BaseDeployed" deployable-type="orange.Spa" container-type="orange.SpaContainer">
+    </type>
 
 </synthetic>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    Note: If you modify this file, you must restart the XL Deploy server.
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <type type="axis2.Deployer" extends="generic.Container">
+        <property name="axis2ServicesDirectory" />
+    </type>
+    <type type="axis2.DeployedAar" extends="udm.BaseDeployedArtifact" deployable-type="axis2.Aar" container-type="axis2.Deployer">
+        <generate-deployable type="axis2.Aar" extends="generic.File" />
+        <property name="targetFileName" />
+    </type>
+
+</synthetic>

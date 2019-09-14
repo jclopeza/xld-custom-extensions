@@ -12,13 +12,5 @@
         <property name="satisfiesOkTestManager" description="Ok test manager" kind="boolean" required="false" category="Deployment Checklist" />
         <property name="satisfiesOkReleaseManager" description="Ok release manager" kind="boolean" required="false" category="Deployment Checklist" />
     </type-modification>
-    
-    <type type="axis2.Deployer" extends="generic.Container">
-        <property name="axis2ServicesDirectory" />
-    </type>
-    <type type="axis2.DeployedAar" extends="udm.BaseDeployedArtifact" deployable-type="axis2.Aar" container-type="axis2.Deployer">
-        <generate-deployable type="axis2.Aar" extends="generic.File" />
-        <property name="targetFileName" />
-    </type>
 
 </synthetic>
