@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+
+    <rule name="checkpoint.Deployed.rules_CREATE" scope="deployed">
+        <conditions>
+            <type>checkpoint.Deployed</type>
+            <operation>CREATE</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Create checkpoint on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/checkpoint-create.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+
+    <rule name="checkpoint.Deployed.rules_DESTROY" scope="deployed">
+        <conditions>
+            <type>checkpoint.Deployed</type>
+            <operation>DESTROY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Destroy checkpoint on: " + previousDeployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/checkpoint-destroy.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+
+    <rule name="checkpoint.Deployed.rules_MODIFY" scope="deployed">
+        <conditions>
+            <type>checkpoint.Deployed</type>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Modify checkpoint on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/checkpoint-modify.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+
+    <rule name="checkpoint.Deployed.rules_NOOP" scope="deployed">
+        <conditions>
+            <type>checkpoint.Deployed</type>
+            <operation>NOOP</operation>
+        </conditions>
+        <steps>
+            <os-script>
+                <description expression="true">"Noop checkpoint on: " + deployed.deployable.name</description>
+                <order>50</order>
+                <script>scripts/checkpoint-noop.sh.ftl</script>
+            </os-script>
+        </steps>
+    </rule>
+
+</rules>

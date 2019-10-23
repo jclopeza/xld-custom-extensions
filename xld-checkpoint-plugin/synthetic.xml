@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Note: If you modify this file, you must restart the XL Deploy server.
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <type type="checkpoint.Container" extends="udm.BaseContainer">
+        <property name="host" kind="ci" referenced-type="overthere.Host" as-containment="true"/>
+    </type>
+    <type type="checkpoint.Deployed" extends="udm.BaseDeployed" deployable-type="checkpoint.Deployable" container-type="checkpoint.Container">
+        <generate-deployable  type="checkpoint.Deployable" extends="udm.BaseDeployable"/>
+        <property name="property" required="true" default="property"/>
+    </type>
+
+</synthetic>

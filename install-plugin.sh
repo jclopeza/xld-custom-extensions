@@ -1,5 +1,5 @@
 #!/bin/bash
-version_xld=9.0.3
+version_xld=9.0.5
 plugin=$1
 
 display_help() {
@@ -22,13 +22,13 @@ display_help() {
 ####################################################
 # Detenemos XL Deploy
 ####################################################
-sudo service xl-deploy stop
+# sudo service xl-deploy stop
 
 ####################################################
 # Borramos el plugin del directorio
 ####################################################
-unlink /opt/xebialabs/xl-deploy-${version_xld}-server/plugins/xld-${plugin}-1.0.0.jar
-rm /opt/xebialabs/plugins/xld-${plugin}-1.0.0.jar
+rm /opt/xebialabs/xl-deploy-${version_xld}-server/plugins/xld-${plugin}-plugin-1.0.0.jar
+rm /opt/xebialabs/plugins/xld-${plugin}-plugin-1.0.0.jar
 
 ####################################################
 # Compilamos el plugin
@@ -45,9 +45,9 @@ mv xld-${plugin}-plugin-1.0.0.jar /opt/xebialabs/plugins/
 # Creamos enlace simbolico
 ####################################################
 cd /opt/xebialabs/xl-deploy-${version_xld}-server/plugins
-ln -s ../../plugins/xld-${plugin}-plugin-1.0.0.jar
+cp /opt/xebialabs/plugins/xld-${plugin}-plugin-1.0.0.jar /opt/xebialabs/xl-deploy-${version_xld}-server/plugins/
 
 ####################################################
 # Reinicamos XL Deploy
 ####################################################
-sudo service xl-deploy start
+# sudo service xl-deploy start
