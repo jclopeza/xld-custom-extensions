@@ -5,7 +5,10 @@
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <type-modification type="udm.DeploymentPackage">
-        <property name="changeLog" description="Change log and features inside this version" kind="string" size="large" required="false" category="Change Log"/>
+        <property name="buildUrl" description="Build URL" kind="string" required="false" category="Build Information"/>
+        <property name="gitRepo" description="Git Repository" kind="string" required="false" category="Build Information"/>
+        <property name="commitId" description="Commit Id" kind="string" required="false" category="Build Information"/>
+        <property name="changeLog" description="Change log and features inside this version" kind="string" size="large" required="false" category="Build Information"/>
     </type-modification>
 
 </synthetic>
