@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+    Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+
+    <rule name="microservice.deploy.ms" scope="deployed">
+        <conditions>
+            <type>microservice.DeployedMicroservice</type>
+            <operation>CREATE</operation>
+        </conditions>
+        <steps>
+            <noop>
+                <description expression="true">"El orden es %s" % (deployed.order)</description>
+                <order expression="true">deployed.order</order>
+            </noop>
+        </steps>
+    </rule>
+
+</rules>
