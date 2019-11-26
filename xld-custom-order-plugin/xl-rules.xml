@@ -17,4 +17,12 @@
         </steps>
     </rule>
 
+    <rule name="microservice.deploy.msProperties" scope="deployed">
+        <conditions>
+            <type>microservice.DeployedMicroserviceProperties</type>
+            <operation>MODIFY</operation>
+        </conditions>
+        <planning-script-path>planning/GenerateCustomSteps.py</planning-script-path>
+    </rule>
+
 </rules>

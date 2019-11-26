@@ -9,4 +9,12 @@
         <property name="order" kind="integer" />
     </type>
 
+    <type type="microservice.DeployedMicroserviceProperties" extends="udm.BaseDeployed" deployable-type="microservice.MsProperties" container-type="overthere.Host">
+        <generate-deployable type="microservice.MsProperties" extends="udm.BaseDeployable" />
+        <property name="order" kind="integer" />
+        <property name="configVersion" kind="string" required="false" />
+        <property name="chartName" kind="string" required="false" />
+        <property name="chartVersion" kind="string" required="false" />
+    </type>
+
 </synthetic>
